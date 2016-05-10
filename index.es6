@@ -1,22 +1,26 @@
 import h from 'snabbdom/h'
 
 function view(textarea, config) {
+  config = config || {}
   textarea.data = textarea.data || {}
   textarea.data.hook = textarea.data.hook || {}
   let oldHook = textarea.data.hook.insert
-  config.maxRows = config.maxRows || 30
+  config.maxRows = config.maxRows
 
   textarea.data.hook.insert = vnode => {
     if(oldHook) oldHook(vnode)
     let elm = vnode.elm
-    let change = new Event('change'), submit = new Event('submit')
-    elm.rows = elm.rows || 1
     elm.style.overflow = 'hidden'
     elm.style.height = 'auto'
     autoSetRows(elm, config.maxRows)
-    elm.addEventListener('keydown', ev => {
+    elm.addEventListener('input', ev => {
       autoSetRows(elm, config.maxRows)
+    })
+    elm.addEventListener('keydown', ev => {
       if(config.captureEnter) handleEnterKey(ev, elm)
+    })
+    elm.addEventListener('change', ev => {
+      autoSetRows(elm, config.maxRows)
     })
   }
 
@@ -24,16 +28,15 @@ function view(textarea, config) {
 }
 
 function autoSetRows(elm, maxRows) {
-  let lh = elm.clientHeight / elm.rows
   elm.rows = 1
-  while(elm.scrollHeight > elm.clientHeight && elm.rows < maxRows) {
-    elm.style.overflow = 'hidden'
+  while(elm.clientHeight < elm.scrollHeight && (!maxRows || elm.rows < maxRows)) {
     elm.rows += 1
   }
-  if(elm.scrollHeight > elm.clientHeight) elm.style.overflow = 'auto';
+  if(elm.rows >= maxRows) elm.style.overflow = 'auto'
 }
 
 function handleEnterKey(ev, elm) {
+  let change = new Event('change'), submit = new Event('submit')
   if(ev.keyCode !== 13) return
   if(ev.shiftKey || ev.altKey) return
   if(elm.form) { elm.form.dispatchEvent(submit) }

@@ -6,10 +6,16 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {},
-  "devDependencies": {},
+  "dependencies": {
+    "snabbdom": "0.4.2"
+  },
+  "devDependencies": {
+    "babelify": "6.4.0",
+    "budo": "8.2.2",
+    "flimflam-render": "0.0.5"
+  },
   "scripts": {
-    "build" : "babel index.es6 > index.js"
+    "build": "babel index.es6 > index.js"
   },
   "repository": {
     "type": "git",
