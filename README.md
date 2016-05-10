@@ -11,7 +11,7 @@ To use it, simply wrap a config object and a text area in a call to `textbox()`
 import h from 'snabbdom/h'
 import textbox from 'ff-textbox'
 
-let textarea = h('textarea, {props: {placeholder: 'Hi!'}, on: {change: do_something}}, defaultVal)
+let textarea = h('textarea', {props: {placeholder: 'Hi!'}, on: {change: do_something}}, defaultVal)
 let myCommentBox = textbox(textarea, {
   captureEnter: true // default = false, whether hitting enter triggers change/form submit
 , maxRows: 4 // default = false, set a number of rows that will cause scrolling to start within the textarea. Falsy value means unlimited rows, never scrolls.

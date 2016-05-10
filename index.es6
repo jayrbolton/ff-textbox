@@ -13,15 +13,9 @@ function view(textarea, config) {
     elm.style.overflow = 'hidden'
     elm.style.height = 'auto'
     autoSetRows(elm, config.maxRows)
-    elm.addEventListener('input', ev => {
-      autoSetRows(elm, config.maxRows)
-    })
-    elm.addEventListener('keydown', ev => {
-      if(config.captureEnter) handleEnterKey(ev, elm)
-    })
-    elm.addEventListener('change', ev => {
-      autoSetRows(elm, config.maxRows)
-    })
+    elm.addEventListener('input',   ev => autoSetRows(elm, config.maxRows))
+    elm.addEventListener('keydown', ev => config.captureEnter && handleEnterKey(ev, elm))
+    elm.addEventListener('change',  ev => autoSetRows(elm, config.maxRows))
   }
 
   return textarea
