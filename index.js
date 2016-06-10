@@ -1,5 +1,10 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports['default'] = view;
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _snabbdomH = require('snabbdom/h');
@@ -55,6 +60,5 @@ function handleEnterKey(ev, elm) {
   elm.dispatchEvent(change);
   ev.preventDefault();
 }
-
-module.exports = view;
+module.exports = exports['default'];
 

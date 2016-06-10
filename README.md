@@ -28,5 +28,17 @@ With `captureEnter` turned on, the user can press Shift-Enter or Alt-Enter to st
 
 To build for deployment, run: `npm run build`. You need babel-cli installed.
 
-A demo lives in /demo/index.js. Simply run `budo -l demo/index.js -- -t babelify` to serve the demo.
+## test
+
+`zuul --local --ui mocha-qunit -- test/index.js`
+
+or
+
+`npm run test`
+
+## demo
+
+A demo lives in `/demo/index.js`.
+
+Run `budo demo/index.js -- -t babelify` to serve the demo.
 

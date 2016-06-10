@@ -1,6 +1,6 @@
 import h from 'snabbdom/h'
 
-function view(textarea, config) {
+export default function view(textarea, config) {
   config = config || {}
   textarea.data = textarea.data || {}
   textarea.data.hook = textarea.data.hook || {}
@@ -41,4 +41,3 @@ function handleEnterKey(ev, elm) {
   ev.preventDefault()
 }
 
-module.exports = view
