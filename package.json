@@ -1,6 +1,6 @@
 {
   "name": "ff-textbox",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Flimflam textarea that expands as you type and captures Enter key.",
   "main": "index.js",
   "directories": {
