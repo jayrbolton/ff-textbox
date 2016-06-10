@@ -17,6 +17,9 @@ function view(textarea, config) {
     elm.addEventListener('keydown', ev => config.captureEnter && handleEnterKey(ev, elm))
     elm.addEventListener('change',  ev => autoSetRows(elm, config.maxRows))
   }
+  textarea.data.hook.update = vnode => {
+    autoSetRows(vnode.elm, config.maxRows)
+  }
 
   return textarea
 }

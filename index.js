@@ -20,14 +20,17 @@ function view(textarea, config) {
     elm.style.height = 'auto';
     autoSetRows(elm, config.maxRows);
     elm.addEventListener('input', function (ev) {
-      autoSetRows(elm, config.maxRows);
+      return autoSetRows(elm, config.maxRows);
     });
     elm.addEventListener('keydown', function (ev) {
-      if (config.captureEnter) handleEnterKey(ev, elm);
+      return config.captureEnter && handleEnterKey(ev, elm);
     });
     elm.addEventListener('change', function (ev) {
-      autoSetRows(elm, config.maxRows);
+      return autoSetRows(elm, config.maxRows);
     });
+  };
+  textarea.data.hook.update = function (vnode) {
+    autoSetRows(vnode.elm, config.maxRows);
   };
 
   return textarea;
